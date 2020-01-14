@@ -1,22 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.jorgeq.belatrix.logger;
 
 /**
  *
  * @author Luisa Quintero
  */
-public class ParamLogger {
+public class ParamLoggerDTO {
 
+    //Use to define whether log to a file
     public boolean logToFileParam;
+    //Use to define whether log to console
     public boolean logToConsoleParam;
-    public boolean logMessageParam;
-    public boolean logWarningParam;
-    private boolean logErrorParam;
+    //Use to define whether log to database
     private boolean logToDatabaseParam;
+    //Use to define type of messagge (messagge)
+    public boolean logMessageParam;
+    //Use to define type of messagge (warning)
+    public boolean logWarningParam;
+    //Use to define type of messagge (error)
+    private boolean logErrorParam;
 
     public boolean isLogToFileParam() {
         return logToFileParam;
@@ -66,5 +67,4 @@ public class ParamLogger {
         this.logToDatabaseParam = logToDatabaseParam;
     }
 
-    
 }
