@@ -100,4 +100,9 @@ public class JobLogger {
             stmt.executeUpdate("insert into Log_Values('" + message + "', " + String.valueOf(t) + ")");
         }
     }
+    
+    public static void main(String args[]) throws Exception {
+    JobLogger jl = new JobLogger(true, true, false,true, true, false,null);
+     JobLogger.LogMessage("Prueba", true, true, true);
+    }
 }

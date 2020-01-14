@@ -2,6 +2,8 @@ package com.jorgeq.belatrix;
 
 import com.jorgeq.belatrix.logger.ErrorLoggerException;
 import com.jorgeq.belatrix.logger.JobLogger;
+import com.jorgeq.belatrix.logger.MessageDTO;
+import com.jorgeq.belatrix.logger.MessageTypeEnum;
 import com.jorgeq.belatrix.logger.ParamLoggerDTO;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -21,19 +23,25 @@ import java.util.logging.Logger;
 public class LoggerAdmin {
 
     public static void main(String args[]) {
-  
+
         ParamLoggerDTO parametros = new ParamLoggerDTO();
         parametros.setLogToFileParam(true);
-        parametros.setLogWarningParam(true);
+       // parametros.setLogToConsoleParam(true);
+       // parametros.setLogWarningParam(true);
+        parametros.setLogMessageParam(true);
+        
+        parametros.setLogToDatabaseParam(true);
         JobLogger jl = new JobLogger(parametros);
+        MessageDTO messageDTO = new MessageDTO();
+        messageDTO.setMessage("Mensaje Prueba PARA IRME");
+        messageDTO.setTipoMessage(MessageTypeEnum.MESSAGE);
+
         try {
-            jl.logMessage("Hola Mundo");
-            
-            /*System.out.println("==>"+DateFormat.getDateInstance(DateFormat.LONG).format(new Date()));*/
+            jl.logMessage(messageDTO);
+
         } catch (ErrorLoggerException ex) {
             Logger.getLogger(LoggerAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
 
     }
 }
