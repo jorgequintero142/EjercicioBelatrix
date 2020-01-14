@@ -4,8 +4,6 @@ package com.jorgeq.belatrix.logger;
  *
  * @author Jorge Quintero
  */
-import com.jorgeq.belatrix.LoggerAdmin;
-import java.awt.TrayIcon;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -13,9 +11,6 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Map;
 import java.util.Properties;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
@@ -102,41 +97,6 @@ public class JobLogger {
             registerToDataBase(messageText, messageDTO.getTipoMessage());
         }
 
-        /*  Properties connectionProps = new Properties();
-        connectionProps.put("user", dbParams.get("userName"));
-        connectionProps.put("password", dbParams.get("password"));
-       
-         */
-
- /* if (message && logMessage) {
-            t = 1;
-        }
-        if (error && logError) {
-            t = 2;
-        }
-        if (warning && logWarning) {
-            t = 3;
-        }
-         */
-
- /* if (error && logError) {
-            l = l + "error " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date())
-                    + messageText;
-        }
-        if (warning && logWarning) {
-            l = l + "warning " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date())
-                    + messageText;
-        }
-        if (message && logMessage) {
-            l = l + "message " + DateFormat.getDateInstance(DateFormat.LONG).format(new Date())
-                    + messageText;
-        }if (logToDatabase) {
-            try {
-                stmt.executeUpdate("insert into Log_Values('" + message + "', " + String.valueOf(t) + ")");
-            } catch (SQLException ex) {
-                throw new ErrorLoggerException("An error has ocurred wile inserting data: " + ex.getMessage());
-            }
-        }*/
     }
 
     /**
