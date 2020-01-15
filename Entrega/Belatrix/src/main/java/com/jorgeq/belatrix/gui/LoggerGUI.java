@@ -48,7 +48,7 @@ public final class LoggerGUI {
         System.out.println("2. Message ");
         System.out.println("3. Error ");
         int typeMessageTMP = scanner.nextInt();
-        System.out.println("You selected: " + typeMessage);
+        System.out.println("You selected: " + typeMessageTMP);
 
         if (typeMessageTMP == 9) {
             System.out.println("You did not selected message type");
@@ -80,27 +80,29 @@ public final class LoggerGUI {
         System.out.println("1. Message  ");
         System.out.println("2. Error  ");
         System.out.println("3. Warning  ");
-        System.out.println("Type another number or text to stop ");
+        System.out.println("Type any character to stop ");
 
-        boolean isSometrue = true;
+        boolean isSomefalse = false;
         while (scanner.hasNextInt()) {
             int opc = scanner.nextInt();
             switch (opc) {
                 case 1:
                     params.setLogMessageParam(true);
+                    isSomefalse = true;
                     break;
                 case 2:
                     params.setLogErrorParam(true);
+                    isSomefalse = true;
                     break;
                 case 3:
                     params.setLogWarningParam(true);
+                    isSomefalse = true;
                     break;
                 default:
-                    isSometrue = false;
                     break;
             }
         }
-        if (!isSometrue) {
+        if (!isSomefalse) {
             System.out.println("You must to select at least one option! Default options is selected");
             params.setLogMessageParam(true);
         }
