@@ -81,9 +81,10 @@ public class JobLogger {
             logger.addHandler(ch);
         }
 
-        FileHandler fileHandler = generateFileHandler();
+        
 
-        if (logToFile && fileHandler != null) {
+        if (logToFile) {
+            FileHandler fileHandler = generateFileHandler();
             logger.addHandler(fileHandler);
         }
 

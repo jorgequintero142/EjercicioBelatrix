@@ -1,11 +1,11 @@
 package com.jorgeq.belatrix;
 
+import com.jorgeq.belatrix.gui.LoggerGUI;
 import com.jorgeq.belatrix.logger.ErrorLoggerException;
 import com.jorgeq.belatrix.logger.JobLogger;
 import com.jorgeq.belatrix.logger.MessageDTO;
 import com.jorgeq.belatrix.logger.MessageTypeEnum;
 import com.jorgeq.belatrix.logger.ParamLoggerDTO;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,36 +16,28 @@ import java.util.logging.Logger;
 public class LoggerAdmin {
 
     public static void main(String args[]) {
-    Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-    System.out.println("Enter Message to log");
-    String userName = myObj.nextLine();  // Read user input
-    System.out.println("Username is: " + userName); 
-    
-    System.out.println("Selected the message type"); 
-    System.out.println("1. Warning ");     
-    System.out.println("2. Message ");     
-    System.out.println("3. Error ");
-    String typeMessage = myObj.nextLine();  // Read user input
-    System.out.println("You selected: " + typeMessage); 
-        /*
-        ParamLoggerDTO parametros = new ParamLoggerDTO();
+
+        LoggerGUI logGUI = new LoggerGUI();
+        logGUI.showConsole();
+
+        ParamLoggerDTO parametros = logGUI.getParams();
         parametros.setLogToFileParam(true);
-       // parametros.setLogToConsoleParam(true);
-       // parametros.setLogWarningParam(true);
+        parametros.setLogToConsoleParam(true);
+        // parametros.setLogWarningParam(true);
         parametros.setLogMessageParam(true);
-        
-        parametros.setLogToDatabaseParam(true);
+
+        //parametros.setLogToDatabaseParam(true);
         JobLogger jl = new JobLogger(parametros);
+
         MessageDTO messageDTO = new MessageDTO();
-        messageDTO.setMessage("Mensaje Prueba PARA IRME");
-        messageDTO.setTipoMessage(MessageTypeEnum.MESSAGE);
+        messageDTO.setMessage(logGUI.getMessage());
+        messageDTO.setTipoMessage(logGUI.getMessageType());
 
         try {
             jl.logMessage(messageDTO);
 
         } catch (ErrorLoggerException ex) {
             Logger.getLogger(LoggerAdmin.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-
+        }
     }
 }
