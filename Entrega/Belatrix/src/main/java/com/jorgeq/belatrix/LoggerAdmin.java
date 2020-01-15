@@ -4,7 +4,6 @@ import com.jorgeq.belatrix.gui.LoggerGUI;
 import com.jorgeq.belatrix.logger.ErrorLoggerException;
 import com.jorgeq.belatrix.logger.JobLogger;
 import com.jorgeq.belatrix.logger.MessageDTO;
-import com.jorgeq.belatrix.logger.MessageTypeEnum;
 import com.jorgeq.belatrix.logger.ParamLoggerDTO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,10 +22,7 @@ public class LoggerAdmin {
         ParamLoggerDTO parametros = logGUI.getParams();
         parametros.setLogToFileParam(true);
         parametros.setLogToConsoleParam(true);
-        // parametros.setLogWarningParam(true);
-        parametros.setLogMessageParam(true);
-
-        //parametros.setLogToDatabaseParam(true);
+        parametros.setLogToDatabaseParam(true);
         JobLogger jl = new JobLogger(parametros);
 
         MessageDTO messageDTO = new MessageDTO();

@@ -2,11 +2,10 @@ package com.jorgeq.belatrix.gui;
 
 import com.jorgeq.belatrix.logger.MessageTypeEnum;
 import com.jorgeq.belatrix.logger.ParamLoggerDTO;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- *
+ * Class to manage GUI
  * @author Jorge Quintero
  */
 public final class LoggerGUI {
@@ -16,17 +15,26 @@ public final class LoggerGUI {
     private final Scanner scanner;
     private final ParamLoggerDTO params;
 
+    
+        public LoggerGUI() {
+        scanner = new Scanner(System.in);
+        params = new ParamLoggerDTO();
+    }
+    /**
+     * Show GUI to the user. It's a  classic console, to capture
+     * information that user will insert
+     */
     public void showConsole() {
         defineMessage();
         defineMessageType();
         defineTypesToLog();
     }
 
-    public LoggerGUI() {
-        scanner = new Scanner(System.in);
-        params = new ParamLoggerDTO();
-    }
 
+   /**
+     * Catch the message typed to user, it will be stored in Console,
+     * File or database
+     */
     private void defineMessage() {
         System.out.println("Enter Message to log: ");
         message = scanner.nextLine();
@@ -42,6 +50,9 @@ public final class LoggerGUI {
 
     }
 
+  /**
+ * Show avaible options of allowed message types, and catch user selection
+ */
     private void defineMessageType() {
         System.out.println("Selected the message type: ");
         System.out.println("1. Warning ");
@@ -74,8 +85,10 @@ public final class LoggerGUI {
             }
         }
     }
-
-    public void defineTypesToLog() {
+/**
+ * Show avaible options about type messages, and catch user selection
+ */
+    private void defineTypesToLog() {
         System.out.println("Selected one or more types messages to Log ");
         System.out.println("1. Message  ");
         System.out.println("2. Error  ");
@@ -109,14 +122,27 @@ public final class LoggerGUI {
 
     }
 
+    /**
+     * return the type messaged typed by user
+     * @return 
+     */
     public MessageTypeEnum getMessageType() {
         return typeMessage;
     }
 
+    /**
+     * Return message typed by user
+     * @return 
+     */
     public String getMessage() {
         return message;
     }
 
+    /**
+     * return a Object od class ParamLoggerDTO,
+     * with params about type message allowed.
+     * @return 
+     */
     public ParamLoggerDTO getParams() {
         return params;
     }

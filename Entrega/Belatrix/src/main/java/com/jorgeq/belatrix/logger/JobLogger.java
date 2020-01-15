@@ -1,6 +1,7 @@
 package com.jorgeq.belatrix.logger;
 
 /**
+ * This class is responsable of logic to store messages in choosen format
  *
  * @author Jorge Quintero
  */
@@ -81,8 +82,6 @@ public class JobLogger {
             logger.addHandler(ch);
         }
 
-        
-
         if (logToFile) {
             FileHandler fileHandler = generateFileHandler();
             logger.addHandler(fileHandler);
@@ -101,7 +100,8 @@ public class JobLogger {
     }
 
     /**
-     * Homologate the message type with a Level equivalent from Logger
+     * This method allows to homologate the message type with a Level equivalent
+     * from Logger
      *
      * @param messageType
      * @return
@@ -184,6 +184,13 @@ public class JobLogger {
         return prop;
     }
 
+    /**
+     * this method allows register a message in database
+     *
+     * @param messageText
+     * @param tipoMessage
+     * @throws ErrorLoggerException
+     */
     private void registerToDataBase(String messageText,
             MessageTypeEnum tipoMessage) throws ErrorLoggerException {
         Connection connection = null;
@@ -195,19 +202,40 @@ public class JobLogger {
                     properties.getProperty("bel.user"),
                     properties.getProperty("bel.password"));
         } catch (SQLException ex) {
+            closeConnection(connection);
             throw new ErrorLoggerException("An error has ocurred in database connection: " + ex.getMessage());
         }
         Statement stmt;
         try {
             stmt = connection.createStatement();
         } catch (SQLException ex) {
+            closeConnection(connection);
             throw new ErrorLoggerException("An error has ocurred creating SQL statement: " + ex.getMessage());
         }
 
         try {
             stmt.executeUpdate("insert into Log_Values(message,typemessage) VALUES ('" + messageText + "', '" + tipoMessage.name() + "')");
         } catch (SQLException ex) {
+            closeConnection(connection);
             throw new ErrorLoggerException("An error has ocurred wile inserting data: " + ex.getMessage());
+        }
+
+        closeConnection(connection);
+    }
+
+    /**
+     * This method allows close a active connection
+     *
+     * @param connection
+     * @throws ErrorLoggerException
+     */
+    private void closeConnection(Connection connection) throws ErrorLoggerException {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                throw new ErrorLoggerException("An error has ocurred wile closing connection: " + ex.getMessage());
+            }
         }
     }
 }
